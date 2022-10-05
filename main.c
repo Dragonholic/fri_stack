@@ -101,13 +101,13 @@ int evaluate(char postfix[]){
     for(int i=0; i<n; i++){
         c = postfix[i];
 
-        if(c !='+' && c != '-'&& c !='*' && c !='/'){
-            value = c -'0';
+        if(c !='+' | c !='-'| c !='*' | c !='/'){
+            value = c - 48;
             push(&S, value);
         }
         else{
-            op2 = pop(&S) - 48;
-            op1 = pop(&S) - 48;
+            op2 =  pop(&S)  ;
+            op1 =  pop(&S)  ;
 
             switch (c) {
                 case '+':
@@ -129,6 +129,31 @@ int evaluate(char postfix[]){
         }
     }
     return pop(&S);
+
+//    StackType S;
+//    int x, y, z;
+//    int n = strlen(postfix);
+//    for (int i = 0; i < n; i++)
+//    {
+//        if (!strcmp(postfix[i], "+") || !strcmp(postfix[i], "-") || !strcmp(postfix[i], "/") || !strcmp(postfix[i], "*")) {
+//            x = atoi(pop(&S));
+//            y = atoi(pop(&S));
+//
+//            if (!strcmp(postfix[i], "+")) z = y + x;
+//            if (!strcmp(postfix[i], "-")) z = y - x;
+//            if (!strcmp(postfix[i], "*")) z = y * x;
+//            if (!strcmp(postfix[i], "/")) z = y / x;
+//
+//            char buffer[100];
+//            sprintf(buffer, "%d", z);
+//            push(&S, buffer);
+//        } else {
+//            push(&S, postfix[i]);
+//        }
+//    }
+//    return pop(&S);
+//
+
 }
 
 
@@ -187,15 +212,16 @@ void convert(char infix[], char postfix[]){
     while(!isEmpty(&S)){
         push(&P, pop(&S));
         }
+//
+//    while(!isEmpty(&P)) {
+//        push(&G, pop(&P));}
 
+    int e = 0;
     while(!isEmpty(&P)) {
-        push(&G, pop(&P));}
-
-    int i = 0;
-    while(!isEmpty(&G)) {
-       postfix[i] = pop(&G);
-       ++i;
+       postfix[e] = pop(&P);
+       e++;
     }
+
 
 }
 
@@ -211,10 +237,14 @@ int main() {
 
 
     convert(infix, postfix);
-    printf("%d\n",strlen(postfix));
-    for(int i=0; i <3;i++){
-        printf("%c",postfix[i]);
+
+
+    for (int i = 0; i < 8; ++i) {
+        printf("%d\n",postfix[i] );
     }
+
+
+
 
 
 
